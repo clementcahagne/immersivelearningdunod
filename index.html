@@ -653,18 +653,16 @@
   .retailer-card{
     display:flex;flex-direction:column;
     padding:36px 30px 26px;min-height:180px;
-    background:oklch(1 0 0 / .10);
-    border:1px solid oklch(1 0 0 / .28);
+    background:var(--paper);
+    border:1px solid var(--paper);
     border-radius:16px;
-    color:var(--paper);text-decoration:none;
-    transition:background .22s ease, transform .25s var(--ease), border-color .22s ease, color .22s ease;
+    color:var(--ink);text-decoration:none;
+    transition:transform .25s var(--ease), box-shadow .25s ease;
     position:relative;overflow:hidden;
   }
   .retailer-card:hover{
-    background:var(--paper);
-    color:var(--ink);
-    border-color:var(--paper);
     transform:translateY(-3px);
+    box-shadow:0 14px 30px -16px oklch(0 0 0 / .35);
   }
   .retailer-arr{
     align-self:flex-end;margin-top:auto;
