@@ -674,40 +674,9 @@
 
   /* Retailer logos --------------------------------------------------- */
   .rt-logo{
-    display:inline-flex;align-items:center;
-    font-family:'Bricolage Grotesque',sans-serif;
-    line-height:1;
-  }
-  .rt-dunod{
-    font-weight:900;font-size:32px;letter-spacing:.06em;
-  }
-  .rt-amazon{
-    flex-direction:column;align-items:flex-start;gap:1px;
-  }
-  .rt-amazon-word{
-    font-weight:700;font-size:30px;letter-spacing:-.018em;
-    font-family:'Bricolage Grotesque',sans-serif;
-  }
-  .rt-amazon-smile{
-    width:88px;height:13px;margin-top:-2px;color:#FF9900;
-  }
-  .retailer-card:hover .rt-amazon-smile{color:#FF9900}
-  .rt-fnac{
-    background:#F0CB00;color:#000;
-    padding:7px 13px 6px;border-radius:3px;
-    font-weight:900;font-size:24px;letter-spacing:-.01em;
-    font-style:italic;
-  }
-  .retailer-card:hover .rt-fnac{background:#F0CB00;color:#000}
-  .rt-pdl{
-    flex-direction:column;align-items:flex-start;gap:2px;
-  }
-  .pdl-line1{
-    font-weight:500;font-style:italic;
-    font-size:15px;letter-spacing:.01em;
-  }
-  .pdl-line2{
-    font-weight:800;font-size:26px;letter-spacing:-.012em;
+    display:block;
+    max-height:44px;width:auto;max-width:100%;
+    object-fit:contain;
   }
 
   /* ============ CTA ============ */
@@ -1109,25 +1078,19 @@
 
     <div class="retailer-grid reveal">
       <a class="retailer-card" href="https://www.dunod.com/entreprise-et-economie/immersive-learning-comment-bien-faire-strategie-au-deploiement-reussi" target="_blank" rel="noopener" aria-label="Acheter chez Dunod">
-        <span class="rt-logo rt-dunod">DUNOD</span>
+        <img class="rt-logo" src="assets/img/logodunod.png" alt="Dunod" />
         <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a class="retailer-card" href="https://www.amazon.fr/Immersive-Learning-comment-strat%C3%A9gie-d%C3%A9ploiement/dp/2100889672/" target="_blank" rel="noopener" aria-label="Acheter chez Amazon">
-        <span class="rt-logo rt-amazon">
-          <span class="rt-amazon-word">amazon</span>
-          <svg class="rt-amazon-smile" viewBox="0 0 100 14" aria-hidden="true"><path d="M3 4 Q 50 17, 97 4" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M91 1 L 97 4 L 92 8" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
+        <img class="rt-logo" src="assets/img/logoamazon.png" alt="Amazon" />
         <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a class="retailer-card" href="https://www.fnac.com/a22520068/Clement-Cahagne-Immersive-Learning-comment-bien-faire" target="_blank" rel="noopener" aria-label="Acheter chez Fnac">
-        <span class="rt-logo rt-fnac">Fnac</span>
+        <img class="rt-logo" src="assets/img/logofnac.png" alt="Fnac" />
         <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a class="retailer-card" href="https://www.placedeslibraires.fr/livre/9782100889679-immersive-learning-comment-bien-faire-de-la-strategie-au-deploiement-reussi-clement-cahagne/" target="_blank" rel="noopener" aria-label="Acheter via Place des Libraires">
-        <span class="rt-logo rt-pdl">
-          <span class="pdl-line1">Place des</span>
-          <span class="pdl-line2">Libraires</span>
-        </span>
+        <img class="rt-logo" src="assets/img/logoplace.png" alt="Place des Libraires" />
         <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
