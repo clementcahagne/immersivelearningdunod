@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Immersive Learning : comment (bien) faire ? · Clément Cahagne · Dunod</title>
+<meta name="description" content="Sortie 20 mai 2026. Pédagogie d'abord, méthode ensuite. Par Clément Cahagne, fondateur de Pauuse, chez Dunod." />
+<meta property="og:title" content="Immersive Learning : comment (bien) faire ?" />
+<meta property="og:description" content="Pédagogie d'abord. Méthode ensuite." />
+<meta property="og:image" content="https://www.dunod.com/sites/default/files/styles/principal_desktop/public/thumbnails/image/9782100889679-001-X.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:       oklch(0.965 0.022 80);
+    --bg-2:     oklch(0.985 0.014 86);
+    --paper:    oklch(0.998 0.005 92);
+    --ink:      oklch(0.155 0.012 280);
+    --ink-2:    oklch(0.275 0.012 280);
+    --ink-3:    oklch(0.420 0.014 280);
+    --muted:    oklch(0.520 0.012 80);
+
+    --line:     oklch(0.155 0.012 280 / .14);
+    --line-2:   oklch(0.155 0.012 280 / .06);
+    --line-hi:  oklch(0.155 0.012 280 / .32);
+
+    --red:      oklch(0.598 0.220 28);
+    --red-soft: oklch(0.660 0.195 30);
+    --red-deep: oklch(0.470 0.205 28);
+    --navy:     oklch(0.320 0.115 268);
+    --navy-soft:oklch(0.420 0.135 270);
+    --tan:      oklch(0.795 0.058 85);
+
+    --nav-h: 64px;
+    --shadow-card:  0 1px 0 oklch(1 0 0 / .9) inset,
+                    0 8px 18px -12px oklch(0.155 0.012 280 / .15);
+    --shadow-hover: 0 1px 0 oklch(1 0 0 / .9) inset,
+                    0 26px 50px -24px oklch(0.155 0.012 280 / .28);
+    --shadow-cover: 0 50px 90px -40px oklch(0.155 0.012 280 / .45),
+                    0 20px 30px -20px oklch(0.155 0.012 280 / .25);
+    --maxw: 1240px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top: calc(var(--nav-h) + 18px)}
+  body{
+    margin:0;
+    font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
+    font-size:18px;line-height:1.6;
+    color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    position:relative;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{max-width:100%;display:block}
+  button{font:inherit;cursor:pointer}
+  ::selection{background:var(--red);color:var(--paper)}
+  :focus-visible{outline:2.5px solid var(--red);outline-offset:3px;border-radius:3px}
+
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
+  @media (max-width:560px){.container{padding:0 22px}}
+
+  .display{
+    font-family:'Bricolage Grotesque','Manrope',sans-serif;
+    font-weight:700;line-height:1.02;letter-spacing:-.022em;
+    font-variation-settings:"opsz" 80;
+  }
+
+  /* ============ AMBIENT GLOW LAYER (page-wide) ============ */
+  .ambient{
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    pointer-events:none;z-index:0;overflow:hidden;
+  }
+  .ambient .glow{
+    position:absolute;border-radius:50%;
+    filter:blur(60px);
+    opacity:.85;
+  }
+  .glow.red       {background:radial-gradient(circle, oklch(0.598 0.220 28  / .35), transparent 65%)}
+  .glow.red-soft  {background:radial-gradient(circle, oklch(0.660 0.195 30  / .25), transparent 70%)}
+  .glow.navy      {background:radial-gradient(circle, oklch(0.320 0.115 268 / .40), transparent 65%)}
+  .glow.navy-soft {background:radial-gradient(circle, oklch(0.420 0.135 270 / .30), transparent 70%)}
+  .glow.tan       {background:radial-gradient(circle, oklch(0.795 0.058 85  / .55), transparent 70%)}
+
+  /* ============ FOLIO ============ */
+  .folio{
+    display:inline-flex;gap:14px;align-items:center;
+    font-family:'JetBrains Mono',monospace;font-weight:500;
+    font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-2);
+    padding:9px 16px 9px 14px;
+    border:1px solid var(--line);border-radius:999px;
+    background:var(--bg-2);
+    margin-bottom:32px;
+    box-shadow:var(--shadow-card);
+  }
+  .folio .dot{width:9px;height:9px;border-radius:50%;background:var(--red);flex-shrink:0}
+  .folio .num{color:var(--red);font-weight:600}
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);
+    background:oklch(0.965 0.022 80 / .82);
+    backdrop-filter:saturate(1.2) blur(14px);
+    border-bottom:1px solid var(--line-2);
+  }
+  .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 32px;max-width:var(--maxw);margin:0 auto}
+  @media (max-width:560px){.nav-inner{padding:0 22px}}
+  .brand{
+    display:inline-flex;align-items:baseline;gap:8px;
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:16px;letter-spacing:-.005em;color:var(--ink);
+  }
+  .brand .meta{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  }
+  .nav-links{
+    display:flex;align-items:center;justify-content:space-between;
+    flex:1;gap:32px;
+  }
+  .nav-menu{display:flex;gap:4px;align-items:center}
+  .nav-actions{display:flex;gap:10px;align-items:center}
+  .nav-menu a{
+    font-size:14.5px;font-weight:500;color:var(--ink-2);
+    padding:8px 14px;border-radius:8px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .nav-menu a:hover{color:var(--ink);background:oklch(0.155 0.012 280 / .06)}
+
+  .btn-win{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:10px 17px 10px 15px;border-radius:999px;
+    font-weight:600;font-size:13.5px;letter-spacing:.005em;
+    background:var(--navy);color:var(--paper);
+    border:0;cursor:pointer;position:relative;
+    transition:background .2s ease, transform .25s var(--ease);
+  }
+  .btn-win:hover{
+    background:var(--ink);
+    transform:translateY(-1px);
+  }
+  .btn-win svg{flex-shrink:0;transition:transform .3s var(--ease)}
+  .btn-win:hover svg{transform:rotate(-8deg) scale(1.08)}
+  .btn-win::after{
+    content:"";position:absolute;top:-2px;right:-2px;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--red);
+    border:2px solid var(--bg);
+    animation:winpulse 3s ease-out infinite;
+  }
+  .btn-win:hover::after{animation-play-state:paused}
+  @keyframes winpulse{
+    0%, 55%{box-shadow:0 0 0 0 oklch(0.598 0.220 28 / .5)}
+    85%{box-shadow:0 0 0 6px oklch(0.598 0.220 28 / 0)}
+    100%{box-shadow:0 0 0 0 oklch(0.598 0.220 28 / 0)}
+  }
+  .nav-toggle{
+    display:none;align-items:center;justify-content:center;
+    background:transparent;border:0;padding:8px;color:var(--ink);
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:999px;
+    font-weight:600;font-size:14.5px;
+    background:var(--ink);color:var(--paper);border:0;cursor:pointer;
+    transition:background .18s ease, transform .18s ease;
+  }
+  .btn:hover{background:var(--red);transform:translateY(-1px)}
+  .btn.red{background:var(--red);color:var(--paper)}
+  .btn.red:hover{background:var(--red-deep)}
+  .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arr{transition:transform .2s var(--ease)}
+  .btn:hover .arr{transform:translateX(3px)}
+
+  @media (max-width:880px){
+    .nav-toggle{display:inline-flex}
+    .nav-links{
+      position:absolute;top:var(--nav-h);left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--bg-2);border-bottom:1px solid var(--line);
+      padding:0 22px;max-height:0;overflow:hidden;
+      transition:max-height .35s var(--ease), padding .25s ease;
+    }
+    .nav.open .nav-links{max-height:85vh;padding:8px 22px 22px;gap:16px}
+    .nav-menu{flex-direction:column;gap:0;align-items:stretch}
+    .nav-menu a{padding:15px 4px;border-bottom:1px solid var(--line-2);font-size:15.5px;border-radius:0}
+    .nav-menu a:last-child{border-bottom:0}
+    .nav-actions{flex-direction:column;align-items:stretch;gap:10px}
+    .nav-actions .btn-win, .nav-actions .btn{justify-content:center;padding:14px;font-size:14.5px}
+  }
+
+  /* ============ SECTIONS ============ */
+  section{padding:104px 0;position:relative;z-index:1}
+  @media (max-width:640px){section{padding:76px 0}}
+
+  .sec-head{margin-bottom:56px;max-width:880px}
+  .sec-head h2{
+    margin:0 0 22px;
+    font-size:clamp(36px, 4.6vw, 64px);
+    line-height:1.05;letter-spacing:-.022em;color:var(--ink);
+  }
+  .sec-head .sec-lede{
+    font-size:clamp(18px, 1.4vw, 22px);line-height:1.55;color:var(--ink-2);
+    max-width:62ch;margin:0;font-weight:400;
+  }
+  .sec-head .sec-lede b{color:var(--ink);font-weight:600}
+
+  /* ============ HERO ============ */
+  .hero{padding: calc(var(--nav-h) + 52px) 0 88px}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center}
+  @media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:56px}}
+
+  .hero-meta-top{
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+    margin-bottom:40px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    border-bottom:1px solid var(--line-2);padding-bottom:14px;
+  }
+  .hero-meta-top .live-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--red);
+    display:inline-block;vertical-align:middle;margin-right:8px;
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 oklch(0.598 0.220 28 / .55)}
+    70%{box-shadow:0 0 0 9px oklch(0.598 0.220 28 / 0)}
+    100%{box-shadow:0 0 0 0 oklch(0.598 0.220 28 / 0)}
+  }
+  @media (max-width:560px){.hero-meta-top{flex-wrap:wrap;gap:8px 18px}}
+
+  .hero h1{
+    margin:0 0 26px;
+    font-size:clamp(48px, 7.4vw, 96px);
+    letter-spacing:-.024em;color:var(--ink);
+  }
+  .hero h1 .red{color:var(--red)}
+  .hero h1 .navy{color:var(--navy)}
+  .hero-tag{
+    font-size:clamp(20px,1.7vw,25px);font-weight:500;line-height:1.45;color:var(--ink-2);
+    max-width:42ch;margin:0 0 32px;
+  }
+  .hero-cta{display:flex;flex-wrap:wrap;gap:10px}
+  .hero-meta-bottom{
+    margin-top:28px;font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;color:var(--muted);letter-spacing:.06em;
+    display:flex;flex-wrap:wrap;gap:6px 16px;
+  }
+  .hero-meta-bottom b{color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:0}
+
+  .book-stage{
+    position:relative;aspect-ratio:4/4.8;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .book-cover{
+    width:78%;max-height:100%;
+    border-radius:4px 8px 8px 4px;
+    box-shadow:var(--shadow-cover);
+    transform:rotate(-1.5deg);
+    background:var(--bg-2);object-fit:cover;
+  }
+
+  /* ============ PODCAST FEATURE (entre hero et livre) ============ */
+  .podcast-feature{padding:24px 0 56px;position:relative;z-index:1}
+  .pod-feature{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:36px 40px;
+    box-shadow:var(--shadow-card);
+    position:relative;overflow:hidden;
+    display:flex;flex-direction:column;gap:26px;
+  }
+  .pod-feature::before{
+    content:"";position:absolute;
+    width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle, oklch(0.598 0.220 28 / .14), transparent 60%);
+    top:-160px;right:-120px;pointer-events:none;
+  }
+  @media (max-width:900px){
+    .pod-feature{padding:28px;gap:22px}
+  }
+  .pod-feature-text{position:relative;z-index:1}
+  .pod-feature-label{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:'JetBrains Mono',monospace;font-weight:500;
+    font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--red);
+    padding:7px 14px 7px 12px;border-radius:999px;
+    background:oklch(0.598 0.220 28 / .08);
+    border:1px solid oklch(0.598 0.220 28 / .25);
+    margin-bottom:18px;
+  }
+  .pod-feature-label svg{flex-shrink:0}
+  .pod-feature h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(26px, 2.8vw, 38px);
+    line-height:1.05;letter-spacing:-.022em;
+    color:var(--ink);margin:0 0 12px;
+  }
+  .pod-feature p{
+    font-size:16.5px;line-height:1.55;color:var(--ink-2);margin:0;max-width:38ch;
+  }
+  .pod-feature-player{position:relative;z-index:1}
+  .pod-feature-player iframe{
+    width:100%;border-radius:14px;display:block;
+    border:1px solid var(--line);
+    background:var(--bg);
+  }
+
+  /* ============ LE LIVRE — convictions en manifesto asymétrique ============ */
+  .convictions{
+    margin-top:24px;
+    display:flex;flex-direction:column;gap:56px;
+  }
+  .conv{
+    display:grid;grid-template-columns:minmax(180px, .5fr) minmax(0, 1.4fr);
+    gap:24px 64px;align-items:center;
+  }
+  .conv.flip{grid-template-columns:minmax(0, 1.4fr) minmax(180px, .5fr)}
+  .conv.flip .conv-num{order:2;justify-self:end;text-align:right}
+  .conv.flip .conv-text{order:1;text-align:right}
+  .conv.flip .conv-text .conv-desc{margin-left:auto}
+
+  .conv-num{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(120px, 16vw, 220px);
+    line-height:.82;letter-spacing:-.045em;
+    color:var(--red);
+    align-self:center;
+  }
+  .conv:nth-child(2) .conv-num{color:var(--red-soft)}
+  .conv:nth-child(3) .conv-num{color:var(--navy)}
+
+  .conv-text .conv-tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:14px;
+  }
+  .conv-text h3{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(28px, 3.2vw, 42px);line-height:1.08;letter-spacing:-.02em;
+    color:var(--ink);margin:0 0 16px;
+  }
+  .conv-text .conv-desc{
+    font-size:17px;line-height:1.6;color:var(--ink-2);
+    max-width:54ch;margin:0;
+  }
+
+  @media (max-width:780px){
+    .conv, .conv.flip{
+      grid-template-columns:1fr;gap:14px;
+    }
+    .conv.flip .conv-num{order:0;justify-self:start;text-align:left}
+    .conv.flip .conv-text{order:0;text-align:left}
+    .conv.flip .conv-text .conv-desc{margin-left:0}
+    .conv-num{font-size:clamp(96px, 22vw, 140px)}
+  }
+
+  /* ============ CARD SYSTEM (carousel) ============ */
+  .card{
+    background:var(--bg-2);
+    border:1px solid var(--line);border-radius:18px;
+    padding:32px 30px 34px;
+    display:flex;flex-direction:column;gap:14px;
+    position:relative;overflow:hidden;
+    box-shadow:var(--shadow-card);
+    transition:transform .3s var(--ease), border-color .25s ease, box-shadow .25s ease;
+  }
+  .card::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:1.5px;
+    background:linear-gradient(90deg, transparent, var(--red), transparent);
+    opacity:0;transition:opacity .3s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--line-hi);box-shadow:var(--shadow-hover)}
+  .card:hover::after{opacity:1}
+
+  .card .card-mono{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;
+  }
+  .card .card-num{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(60px, 6.8vw, 88px);line-height:.9;letter-spacing:-.04em;
+    color:var(--red);margin:4px 0 2px;
+  }
+  .card .card-title{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:23px;line-height:1.18;letter-spacing:-.015em;
+    margin:0;color:var(--ink);
+  }
+  .card .card-desc{
+    margin:auto 0 0;font-size:16px;line-height:1.55;color:var(--ink-3);
+  }
+  .card .card-tag{
+    display:inline-flex;align-self:flex-start;
+    padding:5px 11px;border-radius:999px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;
+    background:oklch(0.155 0.012 280 / .06);color:var(--ink-3);
+    margin-top:8px;
+  }
+
+  /* ============ SOMMAIRE ============ */
+  .carousel{position:relative}
+  .car-head{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:24px}
+  .car-arrow{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--bg-2);color:var(--ink);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow-card);
+    transition:background .18s ease, border-color .18s ease, color .18s ease, opacity .18s ease;
+  }
+  .car-arrow:hover{background:var(--red);border-color:var(--red);color:var(--paper)}
+  .car-arrow:disabled{opacity:.35;cursor:default}
+  .car-arrow:disabled:hover{background:var(--bg-2);border-color:var(--line);color:var(--ink)}
+  .car-progress{
+    flex:1;height:3px;background:oklch(0.155 0.012 280 / .10);border-radius:2px;
+    margin-right:14px;overflow:hidden;position:relative;
+  }
+  .car-progress-bar{
+    height:100%;background:var(--red);width:33%;border-radius:2px;
+    transition:margin-left .35s var(--ease), width .35s var(--ease);
+  }
+  .car-track-wrap{position:relative;margin:0 -32px;padding:0 32px}
+  @media (max-width:560px){.car-track-wrap{margin:0 -22px;padding:0 22px}}
+  .car-track{
+    display:flex;gap:20px;overflow-x:auto;
+    scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    scrollbar-width:none;padding:4px 0 24px;
+  }
+  .car-track::-webkit-scrollbar{display:none}
+
+  .chap{flex:0 0 calc((100% - 40px) / 3);scroll-snap-align:start;min-height:380px}
+  @media (max-width:980px){.chap{flex:0 0 calc((100% - 20px) / 2)}}
+  @media (max-width:640px){.chap{flex:0 0 86%;min-height:340px}}
+  .chap:nth-child(3n+2) .card-num{color:var(--red-soft)}
+  .chap:nth-child(3n+3) .card-num{color:var(--navy)}
+
+  /* ============ POUR QUI (liste, sans hover) ============ */
+  .aud-list{border-top:1.5px solid var(--ink)}
+  .aud-row{
+    display:grid;grid-template-columns:80px minmax(0, 1.3fr) minmax(0, 1.4fr);
+    gap:24px 56px;align-items:baseline;
+    padding:32px 8px;border-bottom:1px solid var(--line);
+  }
+  .aud-row .aud-n{
+    font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--muted);
+    letter-spacing:.08em;
+  }
+  .aud-row .aud-label{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(24px, 2.6vw, 32px);line-height:1.1;letter-spacing:-.018em;color:var(--ink);
+  }
+  .aud-row .aud-desc{font-size:17px;color:var(--ink-2);line-height:1.55;max-width:44ch;margin:0}
+  @media (max-width:780px){
+    .aud-row{grid-template-columns:52px 1fr;row-gap:6px}
+    .aud-row .aud-desc{grid-column:1/-1;padding-left:0;font-size:16px}
+  }
+
+  /* ============ AUTEUR ============ */
+  .auteur-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:center}
+  @media (max-width:880px){.auteur-grid{grid-template-columns:1fr;gap:40px}}
+  .portrait-card{
+    position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
+    background:linear-gradient(160deg, var(--navy) 0%, var(--ink) 55%, var(--red-deep) 100%);
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -25px oklch(0.155 0.012 280 / .35);
+  }
+  .portrait-card .photo{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;z-index:1;
+  }
+  .portrait-card .ph-fallback{
+    position:absolute;inset:0;display:flex;align-items:flex-end;padding:24px;
+    color:oklch(1 0 0 / .4);
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    z-index:0;
+  }
+  .portrait-card .stamp{
+    position:absolute;top:18px;left:18px;z-index:2;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper);
+    letter-spacing:.16em;text-transform:uppercase;
+    background:oklch(0 0 0 / .35);backdrop-filter:blur(6px);
+    padding:6px 10px;border-radius:4px;
+  }
+  .au-name{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(28px,3.4vw,42px);line-height:1.05;letter-spacing:-.02em;
+    color:var(--ink);margin:0 0 6px;
+  }
+  .au-role{
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    margin:0 0 22px;
+  }
+  .au-bio{font-size:18px;line-height:1.65;color:var(--ink-2);max-width:56ch;margin:0 0 14px}
+  .au-bio b{color:var(--ink);font-weight:600}
+  .au-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+  /* ============ CONTRIBUTEURS ============ */
+  .contrib-group{margin-top:48px}
+  .contrib-group:first-of-type{margin-top:0}
+  .contrib-role{
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  }
+  .contrib-role::after{content:"";flex:1;height:1px;background:var(--line)}
+  .contrib-row{display:grid;grid-template-columns:repeat(6,1fr);gap:24px 18px}
+  @media (max-width:1020px){.contrib-row{grid-template-columns:repeat(4,1fr)}}
+  @media (max-width:720px){.contrib-row{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:480px){.contrib-row{grid-template-columns:repeat(2,1fr)}}
+
+  .person{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:8px 6px;border-radius:12px;transition:transform .2s ease;
+  }
+  .person:hover{transform:translateY(-3px)}
+  .avatar{
+    width:86px;height:86px;border-radius:50%;
+    background-color:var(--bg-2);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--paper);font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;font-size:22px;letter-spacing:-.01em;
+    border:2px solid var(--bg-2);
+    box-shadow:0 8px 18px -10px oklch(0.155 0.012 280 / .35);
+    transition:box-shadow .2s ease, transform .2s ease;
+    position:relative;overflow:hidden;
+  }
+  .avatar img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;display:block;z-index:1;
+  }
+  .person:hover .avatar{box-shadow:0 16px 28px -10px oklch(0.155 0.012 280 / .45)}
+  .person:nth-child(3n+1) .avatar{background-color:var(--red)}
+  .person:nth-child(3n+2) .avatar{background-color:var(--navy)}
+  .person:nth-child(3n+3) .avatar{background-color:var(--tan);color:var(--ink)}
+  .person .nm{
+    margin-top:14px;font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;font-size:15px;line-height:1.2;letter-spacing:-.01em;color:var(--ink);
+  }
+  .person .role{margin-top:4px;font-size:12.5px;color:var(--ink-3);line-height:1.35;max-width:18ch}
+  .person .ln{
+    margin-top:8px;font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;color:var(--muted);letter-spacing:.08em;
+    text-transform:uppercase;font-weight:500;transition:color .15s ease;
+  }
+  .person:hover .ln{color:var(--red)}
+
+  /* ============ PODCAST ============ */
+  .ep-list{border-top:1.5px solid var(--ink);margin-top:8px}
+  .ep-row{
+    display:grid;
+    grid-template-columns:54px 110px minmax(0,1fr) 130px;
+    gap:24px 32px;align-items:center;
+    padding:26px 8px;border-bottom:1px solid var(--line);
+    transition:padding .25s var(--ease), background .2s ease;
+  }
+  .ep-row:hover{padding-left:18px;background:var(--bg-2)}
+
+  .ep-play{
+    width:48px;height:48px;border-radius:50%;
+    background:var(--bg-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink);
+    box-shadow:var(--shadow-card);
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .ep-row:hover .ep-play{background:var(--red);border-color:var(--red);color:var(--paper)}
+
+  .ep-num{
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
+  }
+  .ep-num b{color:var(--red);font-weight:600;font-family:inherit;letter-spacing:.06em}
+
+  .ep-text h3{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:700;
+    font-size:clamp(20px, 2.1vw, 26px);line-height:1.2;letter-spacing:-.015em;
+    margin:0 0 6px;color:var(--ink);
+  }
+  .ep-text p{margin:0;font-size:15px;color:var(--ink-3);line-height:1.5}
+
+  .ep-status{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
+    padding:6px 12px;border:1px solid var(--line);border-radius:999px;
+    justify-self:end;display:inline-flex;align-items:center;gap:7px;
+  }
+  .ep-status .dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
+
+  @media (max-width:780px){
+    .ep-row{grid-template-columns:54px 1fr;row-gap:8px}
+    .ep-num{grid-column:2}
+    .ep-text{grid-column:1/-1}
+    .ep-status{grid-column:1/-1;justify-self:start}
+  }
+
+  /* ============ RETAILERS STRIPS (top + bottom) ============ */
+  .retailers-strip{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    padding-bottom:18px;margin-bottom:32px;
+    border-bottom:1px solid var(--line-2);
+    color:var(--muted);
+  }
+  .retailers-strip .strip-label{color:var(--muted);font-weight:500}
+  .retailers-strip .strip-retailer{
+    color:var(--ink-2);font-weight:600;letter-spacing:.06em;
+    text-transform:none;font-size:13.5px;font-family:'Bricolage Grotesque',sans-serif;
+    transition:color .15s ease;
+  }
+  .retailers-strip .strip-retailer:hover{color:var(--red)}
+  .retailers-strip .strip-sep{color:var(--muted);opacity:.5}
+
+  .retailers-strip-section{
+    background:var(--bg-2);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:26px 0;position:relative;z-index:1;
+  }
+  .retailers-strip-section .container{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;
+    justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .retailers-strip-section .strip-label{color:var(--muted);font-weight:500}
+  .retailers-strip-section .strip-retailer{
+    color:var(--ink);font-weight:600;letter-spacing:.06em;
+    text-transform:none;font-size:15px;font-family:'Bricolage Grotesque',sans-serif;
+    transition:color .15s ease;
+  }
+  .retailers-strip-section .strip-retailer:hover{color:var(--red)}
+  .retailers-strip-section .strip-sep{color:var(--muted);opacity:.5}
+
+  /* ============ RETAILER CARDS (in CTA) ============ */
+  .retailer-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:14px;
+    margin-bottom:56px;
+  }
+  @media (max-width:880px){.retailer-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:480px){.retailer-grid{grid-template-columns:1fr}}
+  .retailer-card{
+    display:flex;flex-direction:column;
+    padding:30px 26px 22px;min-height:140px;
+    background:oklch(1 0 0 / .10);
+    border:1px solid oklch(1 0 0 / .28);
+    border-radius:16px;
+    color:var(--paper);text-decoration:none;
+    transition:background .22s ease, transform .25s var(--ease), border-color .22s ease, color .22s ease;
+    position:relative;overflow:hidden;
+  }
+  .retailer-card:hover{
+    background:var(--paper);
+    color:var(--ink);
+    border-color:var(--paper);
+    transform:translateY(-3px);
+  }
+  .retailer-arr{
+    align-self:flex-end;margin-top:auto;
+    transition:transform .25s var(--ease);
+  }
+  .retailer-card:hover .retailer-arr{transform:translateX(4px)}
+
+  /* Retailer logos --------------------------------------------------- */
+  .rt-logo{
+    display:inline-flex;align-items:center;
+    font-family:'Bricolage Grotesque',sans-serif;
+    line-height:1;
+  }
+  .rt-dunod{
+    font-weight:900;font-size:32px;letter-spacing:.06em;
+  }
+  .rt-amazon{
+    flex-direction:column;align-items:flex-start;gap:1px;
+  }
+  .rt-amazon-word{
+    font-weight:700;font-size:30px;letter-spacing:-.018em;
+    font-family:'Bricolage Grotesque',sans-serif;
+  }
+  .rt-amazon-smile{
+    width:88px;height:13px;margin-top:-2px;color:#FF9900;
+  }
+  .retailer-card:hover .rt-amazon-smile{color:#FF9900}
+  .rt-fnac{
+    background:#F0CB00;color:#000;
+    padding:7px 13px 6px;border-radius:3px;
+    font-weight:900;font-size:24px;letter-spacing:-.01em;
+    font-style:italic;
+  }
+  .retailer-card:hover .rt-fnac{background:#F0CB00;color:#000}
+  .rt-pdl{
+    flex-direction:column;align-items:flex-start;gap:2px;
+  }
+  .pdl-line1{
+    font-weight:500;font-style:italic;
+    font-size:15px;letter-spacing:.01em;
+  }
+  .pdl-line2{
+    font-weight:800;font-size:26px;letter-spacing:-.012em;
+  }
+
+  /* ============ CTA ============ */
+  .cta{background:var(--red);color:var(--paper);position:relative;overflow:hidden;z-index:1}
+  .cta::before{
+    content:"";position:absolute;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, oklch(0.998 0.005 92 / .16), transparent 60%);
+    top:-180px;left:-140px;pointer-events:none;
+  }
+  .cta::after{
+    content:"";position:absolute;width:380px;height:380px;border-radius:50%;
+    background:radial-gradient(circle, oklch(0 0 0 / .35), transparent 60%);
+    bottom:-160px;right:-120px;pointer-events:none;
+  }
+  .cta .folio{
+    background:oklch(0 0 0 / .25);
+    border-color:oklch(1 0 0 / .25);
+    color:var(--paper);box-shadow:none;
+  }
+  .cta .folio .num{color:var(--paper)}
+  .cta .folio .dot{background:var(--paper)}
+  .cta .sec-head h2{color:var(--paper);font-size:clamp(42px,6.4vw,88px)}
+  .cta .sec-head .sec-lede{color:oklch(1 0 0 / .9)}
+  .cta .sec-head .sec-lede b{color:var(--paper)}
+  .cta-row{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px}
+  .cta-row .btn{background:var(--paper);color:var(--ink);padding:14px 22px;font-size:15px}
+  .cta-row .btn:hover{background:var(--ink);color:var(--paper)}
+  .cta-row .btn.ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--paper)}
+  .cta-row .btn.ghost:hover{background:var(--paper);color:var(--ink)}
+  .colophon{
+    position:relative;z-index:1;
+    margin-top:56px;padding-top:24px;
+    border-top:1px solid oklch(1 0 0 / .25);
+    display:flex;flex-wrap:wrap;gap:8px 20px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:oklch(1 0 0 / .82);letter-spacing:.06em;
+  }
+  .colophon b{color:var(--paper);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:0}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--ink);color:oklch(1 0 0 / .6);padding:40px 0 28px;position:relative;z-index:1}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot a:hover{color:var(--paper)}
+  .foot .brand{color:var(--paper)}
+  .foot .links{display:flex;gap:22px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.06em}
+  .foot .credit{font-family:'JetBrains Mono',monospace;font-size:11px;color:oklch(1 0 0 / .42);letter-spacing:.06em;margin-top:6px}
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+    .reveal.in{opacity:1;transform:none}
+    .reveal[data-stagger="1"]{transition-delay:.06s}
+    .reveal[data-stagger="2"]{transition-delay:.12s}
+    .reveal[data-stagger="3"]{transition-delay:.18s}
+  }
+</style>
+</head>
+<body>
+
+<!-- AMBIENT GLOW LAYER (page-wide, ne s'arrête jamais entre les sections) -->
+<div class="ambient" aria-hidden="true">
+  <span class="glow red"       style="top:2%;  right:-12%; width:760px; height:760px"></span>
+  <span class="glow tan"       style="top:8%;  left:-10%;  width:560px; height:560px"></span>
+  <span class="glow navy"      style="top:16%; right:-10%; width:620px; height:620px"></span>
+  <span class="glow red-soft"  style="top:24%; left:-10%;  width:520px; height:520px"></span>
+  <span class="glow navy"      style="top:33%; right:-8%;  width:660px; height:660px"></span>
+  <span class="glow tan"       style="top:42%; left:-12%;  width:540px; height:540px"></span>
+  <span class="glow red"       style="top:50%; right:-10%; width:580px; height:580px"></span>
+  <span class="glow navy-soft" style="top:58%; left:-10%;  width:620px; height:620px"></span>
+  <span class="glow red-soft"  style="top:66%; right:-10%; width:520px; height:520px"></span>
+  <span class="glow tan"       style="top:74%; left:-8%;   width:560px; height:560px"></span>
+  <span class="glow navy"      style="top:82%; right:-12%; width:640px; height:640px"></span>
+  <span class="glow red-soft"  style="top:90%; left:-10%;  width:520px; height:520px"></span>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path id="navToggleIcon" d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="nav-links" id="navLinks">
+      <nav class="nav-menu" aria-label="Navigation principale">
+        <a href="#livre">Le livre</a>
+        <a href="#sommaire">Sommaire</a>
+        <a href="#audience">Pour qui</a>
+        <a href="#auteur">Auteur</a>
+        <a href="#contributeurs">Contributeurs</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn-win" href="https://pauuse.notion.site/3651a06ef4ca8026a7fec92d9494c593?pvs=105" target="_blank" rel="noopener" aria-label="Gagnez votre exemplaire">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 12 20 22 4 22 4 12"/>
+            <rect x="2" y="7" width="20" height="5"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+          Gagnez votre exemplaire !
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1 class="display">
+          Immersive<br/>
+          <span class="navy">Learning :</span><br/>
+          comment <span class="red">(bien)</span><br/>
+          faire ?
+        </h1>
+        <p class="hero-tag">
+          Un livre pour remettre pédagogie et méthode au centre des projets immersifs, et faire enfin sortir les casques des placards&nbsp;!
+        </p>
+        <div class="hero-cta">
+          <a class="btn red" href="#acheter">
+            Commander l'ouvrage
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="hero-meta-bottom">
+          <span><b>224 pages</b></span><span>·</span>
+          <span>Broché + ePub</span>
+        </div>
+      </div>
+
+      <div class="book-stage" aria-hidden="true">
+        <img class="book-cover" id="bookCover"
+             src="https://www.dunod.com/sites/default/files/styles/principal_desktop/public/thumbnails/image/9782100889679-001-X.jpeg"
+             alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST FEATURE -->
+<section class="podcast-feature">
+  <div class="container">
+    <div class="pod-feature">
+      <div class="pod-feature-text">
+        <span class="pod-feature-label">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Podcast · En ligne
+        </span>
+        <h2>Le livre, en conversations.</h2>
+      </div>
+      <div class="pod-feature-player">
+        <iframe name="Ausha Podcast Player" frameborder="0" loading="lazy" id="ausha-thFK" height="220" style="border:0;width:100%;height:220px" src="https://player.ausha.co/?showId=o9DGRcY6dPkl&color=%23D34034&multishow=false&playlist=false&dark=false&t=0&podcastId=BGPAEh7g1wmr&v=3&playerId=ausha-thFK"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LE LIVRE — manifesto asymétrique -->
+<section id="livre" class="livre">
+  <div class="container">
+    <div class="sec-head">
+      <span class="folio"><span class="dot"></span><span class="num">§ 01</span> · Le livre</span>
+      <h2 class="display">Trois convictions, un livre.</h2>
+      <p class="sec-lede">
+        Parce que la VR ne vaut rien sans pédagogie. Parce qu'une bonne intention ne fait pas une bonne formation. Et parce que ce livre n'aurait pas existé sans des années d'échanges avec des expertes et des experts du terrain.
+      </p>
+    </div>
+
+    <div class="convictions">
+      <article class="conv reveal">
+        <div class="conv-num">01</div>
+        <div class="conv-text">
+          <span class="conv-tag">Conviction 01</span>
+          <h3>La pédagogie d'abord.</h3>
+          <p class="conv-desc">
+            La technologie au service de l'apprentissage, jamais l'inverse. L'ingénieur pédagogique replacé au centre du dispositif, comme véritable chef d'orchestre du projet immersif.
+          </p>
+        </div>
+      </article>
+
+      <article class="conv flip reveal" data-stagger="1">
+        <div class="conv-num">02</div>
+        <div class="conv-text">
+          <span class="conv-tag">Conviction 02</span>
+          <h3>Une méthode opérationnelle.</h3>
+          <p class="conv-desc">
+            Du cadrage au déploiement, étape par étape. Des modèles éprouvés (Kirkpatrick, Moore, Bloom) et des outils prêts à l'emploi pour passer de l'expérimentation à la formation structurée.
+          </p>
+        </div>
+      </article>
+
+      <article class="conv reveal" data-stagger="2">
+        <div class="conv-num">03</div>
+        <div class="conv-text">
+          <span class="conv-tag">Conviction 03</span>
+          <h3>Des voix d'expertes et d'experts.</h3>
+          <p class="conv-desc">
+            Des années d'échanges avec des praticiens reconnus de l'immersive learning. Leurs regards critiques, leurs retours d'expérience et leurs cas concrets nourrissent chaque chapitre.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SOMMAIRE -->
+<section id="sommaire" class="sommaire">
+  <div class="container">
+    <div class="sec-head">
+      <span class="folio"><span class="dot"></span><span class="num">§ 02</span> · Sommaire</span>
+      <h2 class="display">Neuf chapitres,<br/>du cadrage à l'impact.</h2>
+      <p class="sec-lede">
+        Un parcours pédagogique complet&nbsp;: macro-design, micro-design, animation, déploiement, mesure. Chaque chapitre se referme sur un cas pratique et des outils prêts à l'emploi.
+      </p>
+    </div>
+
+    <div class="carousel" id="chapCarousel">
+      <div class="car-head">
+        <div class="car-progress"><div class="car-progress-bar" id="carBar"></div></div>
+        <button class="car-arrow" id="carPrev" aria-label="Chapitre précédent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="car-arrow" id="carNext" aria-label="Chapitre suivant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="car-track-wrap">
+        <div class="car-track" id="chapTrack">
+          <article class="card chap"><span class="card-mono">Chapitre 01 / 09</span><div class="card-num">01</div><h3 class="card-title">L'environnement des réalités immersives</h3><p class="card-desc">VR, AR, MR. Présence vs immersion. Modèle CAMIL et mécanismes d'apprentissage.</p><span class="card-tag">Fondations</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 02 / 09</span><div class="card-num">02</div><h3 class="card-title">La réalité virtuelle pédagogique</h3><p class="card-desc">Spécificités, garde-fous, leviers d'efficacité. Quand la VR est légitime, quand elle ne l'est pas.</p><span class="card-tag">Cadre</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 03 / 09</span><div class="card-num">03</div><h3 class="card-title">Macro-design d'un projet immersif</h3><p class="card-desc">Cadrer, objectiver, choisir. Kirkpatrick, Moore, Bloom. La conception côté stratégie.</p><span class="card-tag">Méthode</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 04 / 09</span><div class="card-num">04</div><h3 class="card-title">Micro-design d'un projet immersif</h3><p class="card-desc">Scénariser, interagir, structurer le parcours. Le détail qui fait la différence pédagogique.</p><span class="card-tag">Méthode</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 05 / 09</span><div class="card-num">05</div><h3 class="card-title">Donner vie à l'expérience</h3><p class="card-desc">Du cahier des charges à la production. Travailler avec un studio, valider à chaque jalon.</p><span class="card-tag">Production</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 06 / 09</span><div class="card-num">06</div><h3 class="card-title">Équipement et déploiement</h3><p class="card-desc">DSI, MDM, sécurité, ergonomie, salle dédiée. Intégrer la VR au SI de l'entreprise.</p><span class="card-tag">Déploiement</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 07 / 09</span><div class="card-num">07</div><h3 class="card-title">Animer une session immersive</h3><p class="card-desc">Posture du formateur, gestion des émotions, débriefing. Le présentiel, là où la magie opère.</p><span class="card-tag">Animation</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 08 / 09</span><div class="card-num">08</div><h3 class="card-title">Pilotage long terme</h3><p class="card-desc">Exploitation, mesure d'impact, amélioration continue. Et l'alternative photo 360°.</p><span class="card-tag">Mesure</span></article>
+          <article class="card chap"><span class="card-mono">Chapitre 09 / 09</span><div class="card-num">09</div><h3 class="card-title">Le futur de l'immersive learning</h3><p class="card-desc">IA générative, MR, perspectives à cinq ans. Où va la formation immersive.</p><span class="card-tag">Prospective</span></article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section id="audience" class="audience">
+  <div class="container">
+    <div class="sec-head">
+      <span class="folio"><span class="dot"></span><span class="num">§ 03</span> · Pour qui</span>
+      <h2 class="display">Pour celles et ceux qui <em style="font-style:normal;color:var(--red)">font</em>.</h2>
+      <p class="sec-lede">
+        Un livre opérationnel, pas un essai ni un white paper. Quatre lectorats principaux, une même promesse&nbsp;: passer de l'expérimentation à la formation pédagogiquement structurée.
+      </p>
+    </div>
+
+    <div class="aud-list">
+      <div class="aud-row reveal">
+        <span class="aud-n">01 ─</span>
+        <span class="aud-label">Ingénieurs pédagogiques</span>
+        <p class="aud-desc">Pour piloter un projet immersif de bout en bout, comme un véritable chef d'orchestre, avec une partition claire et des outils éprouvés.</p>
+      </div>
+      <div class="aud-row reveal">
+        <span class="aud-n">02 ─</span>
+        <span class="aud-label">Responsables formation</span>
+        <p class="aud-desc">Pour cadrer un projet, justifier l'investissement et atteindre un impact réellement mesurable.</p>
+      </div>
+      <div class="aud-row reveal">
+        <span class="aud-n">03 ─</span>
+        <span class="aud-label">DSI &amp; équipes IT</span>
+        <p class="aud-desc">Pour intégrer la VR au système d'information sans souffrance, et à l'échelle de l'organisation.</p>
+      </div>
+      <div class="aud-row reveal">
+        <span class="aud-n">04 ─</span>
+        <span class="aud-label">Dirigeants &amp; décideurs</span>
+        <p class="aud-desc">Pour comprendre, en quelques heures de lecture, quand la VR a du sens, et quand elle n'en a pas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTEUR -->
+<section id="auteur" class="auteur">
+  <div class="container">
+    <div class="sec-head">
+      <span class="folio"><span class="dot"></span><span class="num">§ 04</span> · L'auteur</span>
+      <h2 class="display">Pédagogie d'abord. Techno après.</h2>
+      <p class="sec-lede">
+        Une pratique forgée au contact direct des apprenants, des formateurs et des experts métier, dans l'industrie comme dans l'éducation.
+      </p>
+    </div>
+
+    <div class="auteur-grid">
+      <div class="reveal">
+        <div class="portrait-card">
+          <img class="photo" src="assets/img/clement.jpg" alt="Portrait de Clément Cahagne" onerror="this.style.display='none'" />
+          <div class="ph-fallback">assets/img/clement.jpg</div>
+          <div class="stamp">Clément Cahagne</div>
+        </div>
+      </div>
+      <div class="reveal" data-stagger="1">
+        <h3 class="au-name">Clément Cahagne</h3>
+        <p class="au-role">Ingénieur pédagogique · Fondateur de Pauuse</p>
+        <p class="au-bio">
+          Avec <b>Pauuse</b>, j'accompagne des structures diverses et variées dans la conception et l'implémentation de solutions pédagogiques, avec une spécialisation sur les réalités immersives.
+        </p>
+        <p class="au-bio">
+          Ce livre rassemble la méthode et les retours d'expérience accumulés au fil de ces collaborations, en compagnie des expertes et experts avec qui j'ai le plaisir d'échanger depuis des années.
+        </p>
+        <div class="au-cta">
+          <a class="btn red" href="https://linkedin.com/in/clementcahagne" target="_blank" rel="noopener">
+            LinkedIn
+            <svg class="arr" width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn ghost" href="https://pauuse.fr" target="_blank" rel="noopener">pauuse.fr</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTEURS -->
+<section id="contributeurs" class="contrib">
+  <div class="container">
+    <div class="sec-head">
+      <span class="folio"><span class="dot"></span><span class="num">§ 05</span> · Contributeurs</span>
+      <h2 class="display">Écrit à plusieurs voix.</h2>
+      <p class="sec-lede">
+        Les expertes et experts de l'immersive learning avec qui j'échange et collabore depuis des années. Leurs regards, leurs retours et leurs cas concrets nourrissent chaque chapitre.
+      </p>
+    </div>
+
+    <div class="contrib-group">
+      <div class="contrib-role">Partenaire de réflexion</div>
+      <div class="contrib-row">
+        <a class="person" href="https://www.linkedin.com/in/olivierbernaert/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/olivier.png" alt="" loading="lazy" onerror="this.remove()" />OB</div><div class="nm">Olivier Bernaert</div><div class="role">CEO, Playy</div><div class="ln">LinkedIn →</div></a>
+      </div>
+    </div>
+
+    <div class="contrib-group">
+      <div class="contrib-role">Préface</div>
+      <div class="contrib-row">
+        <a class="person" href="https://www.linkedin.com/in/goudey/?locale=fr_FR" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/alain.png" alt="" loading="lazy" onerror="this.remove()" />AG</div><div class="nm">Alain Goudey</div><div class="role">DGA Numérique, NEOMA</div><div class="ln">LinkedIn →</div></a>
+      </div>
+    </div>
+
+    <div class="contrib-group">
+      <div class="contrib-role">Experts</div>
+      <div class="contrib-row">
+        <a class="person" href="https://www.linkedin.com/in/aurorethion/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/aurore.png" alt="" loading="lazy" onerror="this.remove()" />AT</div><div class="nm">Aurore Thion</div><div class="role">Fondatrice, Widid</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/bertrand-wolff/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/bertrand.png" alt="" loading="lazy" onerror="this.remove()" />BW</div><div class="nm">Bertrand Wolff</div><div class="role">CEO, Antilogy</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/tanguy-le-crom/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/tanguy.png" alt="" loading="lazy" onerror="this.remove()" />TL</div><div class="nm">Tanguy Le Crom</div><div class="role">UX/UI Designer</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/valentinlogeais/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/valentin.png" alt="" loading="lazy" onerror="this.remove()" />VL</div><div class="nm">Valentin Logeais</div><div class="role">PDG, Myxed</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/jeff-sebrechts/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/jeff.png" alt="" loading="lazy" onerror="this.remove()" />JS</div><div class="nm">Jeff Sebrechts</div><div class="role">PDG, Numix</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-demolliens-476255a8/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/jeremy.png" alt="" loading="lazy" onerror="this.remove()" />JD</div><div class="nm">Jérémy Demolliens</div><div class="role">Resp. Pôle VR, IFPEN</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/ingrid-sem-le-tessier/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/ingrid.png" alt="" loading="lazy" onerror="this.remove()" />IS</div><div class="nm">Ingrid Sem-Le Tessier</div><div class="role">Co-fondatrice, Terrapedagogia</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/selliermarc/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/marc.png" alt="" loading="lazy" onerror="this.remove()" />MS</div><div class="nm">Marc Sellier</div><div class="role">Co-fondateur, VRAI Learning</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/christeless/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/christele.png" alt="" loading="lazy" onerror="this.remove()" />CS</div><div class="nm">Christèle Simeoni</div><div class="role">Co-fondatrice, VRAI Learning</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/jameszopissa/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/james.png" alt="" loading="lazy" onerror="this.remove()" />JZ</div><div class="nm">James Zopissa</div><div class="role">CEO, Morpheus360</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/aubin-gasset-46012713b" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/aubin.png" alt="" loading="lazy" onerror="this.remove()" />AG</div><div class="nm">Aubin Gasset</div><div class="role">Business Dev., Ino-VR</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/benjamin-gregoire-343369160/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/benjamin.png" alt="" loading="lazy" onerror="this.remove()" />BG</div><div class="nm">Benjamin Grégoire</div><div class="role">CEO, Ino-VR</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/nora-vanreeth/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/nora.jpeg" alt="" loading="lazy" onerror="this.remove()" />NV</div><div class="nm">Nora Van Reeth</div><div class="role">Experte techno-pédagogique</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/adriana-berger/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/adriana.jpeg" alt="" loading="lazy" onerror="this.remove()" />AB</div><div class="nm">Adriana Berger</div><div class="role">Experte techno-pédagogique</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/adam-wilhelm/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/adam.jpeg" alt="" loading="lazy" onerror="this.remove()" />AW</div><div class="nm">Adam Wilhelm</div><div class="role">Expert techno-pédagogique</div><div class="ln">LinkedIn →</div></a>
+      </div>
+    </div>
+
+    <div class="contrib-group">
+      <div class="contrib-role">Relecteurs &amp; conseillers</div>
+      <div class="contrib-row">
+        <a class="person" href="https://www.linkedin.com/in/phmpro/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/philippe.jpeg" alt="" loading="lazy" onerror="this.remove()" />PM</div><div class="nm">Philippe Murat</div><div class="role">Resp. projets numériques, AFPA</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/sfleury/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/sylvain.jpeg" alt="" loading="lazy" onerror="this.remove()" />SF</div><div class="nm">Sylvain Fleury</div><div class="role">Enseignant-chercheur, Arts et Métiers ParisTech</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/vanessa-penelope-2a790967/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/vanessa.jpeg" alt="" loading="lazy" onerror="this.remove()" />VP</div><div class="nm">Vanessa Penelope</div><div class="role">Directrice offre digitale, AFPA</div><div class="ln">LinkedIn →</div></a>
+        <a class="person" href="https://www.linkedin.com/in/brigitte-cahagne-934a06b1/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/brigitte.jpeg" alt="" loading="lazy" onerror="this.remove()" />BC</div><div class="nm">Brigitte Cahagne</div><div class="role">Mère géniale de l'auteur</div><div class="ln">LinkedIn →</div></a>
+      </div>
+    </div>
+
+    <div class="contrib-group">
+      <div class="contrib-role">Édition</div>
+      <div class="contrib-row">
+        <a class="person" href="https://www.linkedin.com/in/marie-c%C3%A9cile-de-vienne/" target="_blank" rel="noopener"><div class="avatar"><img src="assets/img/mariececile.jpeg" alt="" loading="lazy" onerror="this.remove()" />MV</div><div class="nm">Marie-Cécile de Vienne</div><div class="role">Responsable d'édition, Dunod</div><div class="ln">LinkedIn →</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="acheter" class="cta">
+  <div class="container">
+    <div class="sec-head" style="margin-bottom:40px">
+      <span class="folio"><span class="dot"></span><span class="num">§ 06</span> · Commander</span>
+      <h2 class="display">Commander l'ouvrage.</h2>
+      <p class="sec-lede">
+        Disponible chez votre revendeur préféré, en broché ou en numérique. Choisissez celui qui vous ressemble.
+      </p>
+    </div>
+
+    <div class="retailer-grid reveal">
+      <a class="retailer-card" href="https://www.dunod.com/entreprise-et-economie/immersive-learning-comment-bien-faire-strategie-au-deploiement-reussi" target="_blank" rel="noopener" aria-label="Acheter chez Dunod">
+        <span class="rt-logo rt-dunod">DUNOD</span>
+        <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="retailer-card" href="https://www.amazon.fr/Immersive-Learning-comment-strat%C3%A9gie-d%C3%A9ploiement/dp/2100889672/" target="_blank" rel="noopener" aria-label="Acheter chez Amazon">
+        <span class="rt-logo rt-amazon">
+          <span class="rt-amazon-word">amazon</span>
+          <svg class="rt-amazon-smile" viewBox="0 0 100 14" aria-hidden="true"><path d="M3 4 Q 50 17, 97 4" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M91 1 L 97 4 L 92 8" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="retailer-card" href="https://www.fnac.com/a22520068/Clement-Cahagne-Immersive-Learning-comment-bien-faire" target="_blank" rel="noopener" aria-label="Acheter chez Fnac">
+        <span class="rt-logo rt-fnac">Fnac</span>
+        <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="retailer-card" href="https://www.placedeslibraires.fr/livre/9782100889679-immersive-learning-comment-bien-faire-de-la-strategie-au-deploiement-reussi-clement-cahagne/" target="_blank" rel="noopener" aria-label="Acheter via Place des Libraires">
+        <span class="rt-logo rt-pdl">
+          <span class="pdl-line1">Place des</span>
+          <span class="pdl-line2">Libraires</span>
+        </span>
+        <svg class="retailer-arr" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container foot">
+    <div>
+      <a class="brand" href="#top">Immersive Learning</a>
+      <div class="credit">© 2026 Clément Cahagne · Édition Dunod · Imprimé en France</div>
+    </div>
+    <div class="links">
+      <a href="https://linkedin.com/in/clementcahagne" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://pauuse.fr" target="_blank" rel="noopener">Pauuse</a>
+      <a href="https://www.dunod.com/entreprise-et-economie/immersive-learning-comment-bien-faire-strategie-au-deploiement-reussi" target="_blank" rel="noopener">Dunod</a>
+      <a href="mailto:clement.cahagne@pauuse.fr">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  const NAV_H = 64;
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href === '#' || href.length < 2) return;
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.pageYOffset - (NAV_H + 12);
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', href);
+    });
+  });
+
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const navIcon = document.getElementById('navToggleIcon');
+  const navLinks = document.getElementById('navLinks');
+  function setNavOpen(open) {
+    nav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    navIcon.setAttribute('d', open ? 'M6 6l12 12M6 18L18 6' : 'M4 7h16M4 12h16M4 17h16');
+  }
+  navToggle.addEventListener('click', () => setNavOpen(!nav.classList.contains('open')));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+
+  // Hide author placeholder once the portrait image loads
+  const portraitImg = document.querySelector('.portrait-card img.photo');
+  const phFallback = document.querySelector('.portrait-card .ph-fallback');
+  if (portraitImg && phFallback) {
+    if (portraitImg.complete && portraitImg.naturalWidth > 0) {
+      phFallback.style.display = 'none';
+    } else {
+      portraitImg.addEventListener('load', () => { phFallback.style.display = 'none'; });
+    }
+  }
+
+  // Hide avatar initials once their image loads
+  document.querySelectorAll('.person .avatar img').forEach(img => {
+    const initials = img.nextSibling;
+    function hideInitials() {
+      if (initials && initials.nodeType === 3) initials.textContent = '';
+    }
+    if (img.complete && img.naturalWidth > 0) hideInitials();
+    else img.addEventListener('load', hideInitials);
+  });
+
+  (function () {
+    const track = document.getElementById('chapTrack');
+    const prev = document.getElementById('carPrev');
+    const next = document.getElementById('carNext');
+    const bar = document.getElementById('carBar');
+    if (!track || !prev || !next) return;
+
+    function cardStep() {
+      const card = track.querySelector('.chap');
+      if (!card) return 320;
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || '20') || 20;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function updateUI() {
+      const max = track.scrollWidth - track.clientWidth;
+      const pos = track.scrollLeft;
+      prev.disabled = pos <= 4;
+      next.disabled = pos >= max - 4;
+      const visibleRatio = track.clientWidth / track.scrollWidth;
+      const minWidth = Math.max(visibleRatio, 0.12);
+      const ratio = max > 0 ? Math.min(1, Math.max(0, pos / max)) : 0;
+      bar.style.width = (minWidth * 100) + '%';
+      bar.style.marginLeft = (ratio * (100 - minWidth * 100)) + '%';
+    }
+    prev.addEventListener('click', () => track.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: cardStep(), behavior: 'smooth' }));
+    track.addEventListener('scroll', updateUI, { passive: true });
+    window.addEventListener('resize', updateUI);
+
+    track.tabIndex = 0;
+    track.setAttribute('aria-label', 'Liste des chapitres');
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: cardStep(), behavior: 'smooth' }); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); track.scrollBy({ left: -cardStep(), behavior: 'smooth' }); }
+    });
+    updateUI();
+  })();
+</script>
+
+<script src="https://player.ausha.co/ausha-player.js" defer></script>
+</body>
+</html>
